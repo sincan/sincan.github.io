@@ -145,6 +145,74 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-GitHub-Page-绑定个人域名" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/17/GitHub-Page-绑定个人域名/">GitHub Page 绑定个人域名</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/17/GitHub-Page-绑定个人域名/" class="archive-article-date">
+  	<time datetime="2017-04-16T18:14:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在GitHub上通过Hexo创建了自己的静态博客，但在网址还是带有GitHub的域名，这样还不够酷，最好就是有自己独特域名。下面就教大家如何让自己博客与自己的域名捆绑一起。<code>sincan.github.io</code>是我GitHub上博客的域名。<code>youwillbe.top</code> 是我购买的域名，相应配置修改为自己的域名。</p>
+<h2 id="1、购买个人域名"><a href="#1、购买个人域名" class="headerlink" title="1、购买个人域名"></a>1、购买个人域名</h2><p><a href="http://www.godaddy.com/" target="_blank" rel="external">狗爹</a>和<a href="http://www.aliyun.com" target="_blank" rel="external">阿里云</a>上都可以购买域名。建议去狗爹上买，有<a href="https://www.dute.me/" target="_blank" rel="external">优惠码</a>这个理由已经够充足了。购买域名后，到域名管理后台修改DNS服务器为<code>f1g1ns1.dnspod.net</code>和<code>f1g1ns2.dnspod.net</code>（以DNSPod为域名解析来做例子）。</p>
+<h2 id="2、添加CNAME文件"><a href="#2、添加CNAME文件" class="headerlink" title="2、添加CNAME文件"></a>2、添加CNAME文件</h2><p>在你的个人博客仓库的根目录中新建文件CNAME（注意没有后缀）。并输入内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youwillbe.top</div></pre></td></tr></table></figure>
+<h2 id="3、DNS解析"><a href="#3、DNS解析" class="headerlink" title="3、DNS解析"></a>3、DNS解析</h2><p><a href="https://www.dnspod.cn" target="_blank" rel="external">DNSPod</a>免费域名解析，不怕被墙。注册完成后，点击添加域名<code>youwillbe.top</code>,然后添加记录，具体如下图所示，其中<code>192.30.252.153</code>和<code>192.30.252.154</code>是Github Pages服务器指定的IP地址，访问该IP地址即表示访问Github Pages。</p>
+<p><img src="http://7xwa19.com1.z0.glb.clouddn.com/DNS1.png" alt="dns"></p>
+<h2 id="4、等待生效"><a href="#4、等待生效" class="headerlink" title="4、等待生效"></a>4、等待生效</h2><p>设置完成后，等待几分钟，然后就可以在浏览器上输入自己的个性域名，并看到自己的博客了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/GitHub/" class="article-tag-list-link color2">GitHub</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/17/GitHub-Page-绑定个人域名/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Hexo-部署GitHub-repository" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
