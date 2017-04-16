@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-04-16T15:29:37.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Sincan</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo 部署GitHub repository</title>
+    <link href="http://yoursite.com/2017/04/16/Hexo-%E9%83%A8%E7%BD%B2GitHub-repository/"/>
+    <id>http://yoursite.com/2017/04/16/Hexo-部署GitHub-repository/</id>
+    <published>2017-04-16T15:23:45.000Z</published>
+    <updated>2017-04-16T15:29:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p>执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<p>修改根目录下的<code>_config.yml</code>，具体内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: &lt;repository url&gt;</div></pre></td></tr></table></figure>
+<p>其中<code>&lt;repository url&gt;</code>为GitHub上的repository。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;配置环境&quot;&gt;&lt;a href=&quot;#配置环境&quot; class=&quot;headerlink&quot; title=&quot;配置环境&quot;&gt;&lt;/a&gt;配置环境&lt;/h2&gt;&lt;p&gt;执行命令&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo 添加分类和标签</title>
+    <link href="http://yoursite.com/2017/04/16/Hexo-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%92%8C%E6%A0%87%E7%AD%BE/"/>
+    <id>http://yoursite.com/2017/04/16/Hexo-添加分类和标签/</id>
+    <published>2017-04-15T17:36:50.000Z</published>
+    <updated>2017-04-16T13:15:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1、让分类和标签功能生效"><a href="#1、让分类和标签功能生效" class="headerlink" title="1、让分类和标签功能生效"></a>1、让分类和标签功能生效</h2><p><strong>分类功能生效</strong></p>
+<p>执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new page &quot;categories&quot;</div></pre></td></tr></table></figure>
+<p>修改<code>source/categories/index.md</code>中，<code>title</code>字段改为<code>layout</code>。保留<code>date</code>字段和值，添加<code>type: &quot;categories&quot;</code>,其他字段可删除，最终效果可参考下面效果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">layout: categories</div><div class="line">date: 2017-04-16 01:44:30</div><div class="line">type: &quot;categories&quot;</div><div class="line">---</div></pre></td></tr></table></figure>
+<p><strong>标签功能生效</strong></p>
+<p>执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new page &quot;tags&quot;</div></pre></td></tr></table></figure>
+<p>修改<code>source/tags/index.md</code>中，<code>title</code>字段改为<code>layout</code>。保留<code>date</code>字段和值，添加<code>type: &quot;tags&quot;</code>,其他字段可删除，最终效果可参考下面效果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">layout: tags</div><div class="line">date: 2017-04-16 01:44:30</div><div class="line">type: &quot;tags&quot;</div><div class="line">---</div></pre></td></tr></table></figure>
+<h2 id="2、文章添加分类与标签"><a href="#2、文章添加分类与标签" class="headerlink" title="2、文章添加分类与标签"></a>2、文章添加分类与标签</h2><p><strong>第一种方法</strong>，针对已存在的文章，头部<code>date</code>字段下增加以下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">categories:</div><div class="line">tags:</div></pre></td></tr></table></figure>
+<p><code>categories</code>为分类名称，如果多个分类用<code>[分类1，分类2]</code>。</p>
+<p><code>tags</code>为标签名称，如果多个便签用<code>[标签1，便签2]</code></p>
+<p>最终效果如下面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">title: 标题名称</div><div class="line">date: 2017-04-16 01:36:50</div><div class="line">categories: 分类名称</div><div class="line">tags: [标签名1，便签名2]</div></pre></td></tr></table></figure>
+<p><strong>第二种方法</strong>，为方便不用每次都手动添加<code>categories</code>和<code>tags</code>，可以修改<code>scaffolds/post.md</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: &#123;&#123; title &#125;&#125;</div><div class="line">date: &#123;&#123; date &#125;&#125;</div><div class="line">categories:</div><div class="line">tags:</div><div class="line">---</div></pre></td></tr></table></figure>
+<p>这样的话，当新建文章时将自动添加<code>categories</code>和<code>tags</code>。</p>
+<p>PS：发现<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a>主题中的分类标签中，如果是多个分类的话，第一个分类可以执行，第二个分类会读取不到文件报错<code>Cannot GET categories/XXXXXX</code>。为了大家都可以顺利添加，建议用默认的主题测试。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1、让分类和标签功能生效&quot;&gt;&lt;a href=&quot;#1、让分类和标签功能生效&quot; class=&quot;headerlink&quot; title=&quot;1、让分类和标签功能生效&quot;&gt;&lt;/a&gt;1、让分类和标签功能生效&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;分类功能生效&lt;/strong&gt;&lt;/p&gt;
+&lt;p
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo 添加RSS订阅</title>
+    <link href="http://yoursite.com/2017/04/15/Hexo-%E6%B7%BB%E5%8A%A0RSS%E8%AE%A2%E9%98%85/"/>
+    <id>http://yoursite.com/2017/04/15/Hexo-添加RSS订阅/</id>
+    <published>2017-04-15T15:47:17.000Z</published>
+    <updated>2017-04-16T12:39:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1、安装插件"><a href="#1、安装插件" class="headerlink" title="1、安装插件"></a>1、安装插件</h2><p>终端执行命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-generator-feed --save</div></pre></td></tr></table></figure>
+<h2 id="2、网站添加RSS支持"><a href="#2、网站添加RSS支持" class="headerlink" title="2、网站添加RSS支持"></a>2、网站添加RSS支持</h2><p>编辑网站根目录下的<code>_config.yml</code>,添加以下代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># RSS订阅支持</div><div class="line">plugin:</div><div class="line">- hexo-generator-feed</div><div class="line"></div><div class="line"># Feed Atom</div><div class="line">feed:</div><div class="line">type: atom</div><div class="line">path: atom.xml</div><div class="line">limit: 20</div></pre></td></tr></table></figure>
+<h2 id="3、主题添加RSS支持"><a href="#3、主题添加RSS支持" class="headerlink" title="3、主题添加RSS支持"></a>3、主题添加RSS支持</h2><p>编辑主题的<code>_config.yml</code>，路径为<code>themes/&lt;主题名称&gt;/_config.yml</code>，以下是<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a>主题的修改方法,具体方法请查阅各自主题修改方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">subnav:</div><div class="line">rss: &quot;/atom.xml&quot;</div></pre></td></tr></table></figure>
+<h2 id="4、生成RSS"><a href="#4、生成RSS" class="headerlink" title="4、生成RSS"></a>4、生成RSS</h2><p>终端执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1、安装插件&quot;&gt;&lt;a href=&quot;#1、安装插件&quot; class=&quot;headerlink&quot; title=&quot;1、安装插件&quot;&gt;&lt;/a&gt;1、安装插件&lt;/h2&gt;&lt;p&gt;终端执行命令。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ssh key 创建与使用</title>
+    <link href="http://yoursite.com/2017/04/14/ssh-key-%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2017/04/14/ssh-key-创建与使用/</id>
+    <published>2017-04-14T10:15:45.000Z</published>
+    <updated>2017-04-16T12:40:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="生成ssh-key"><a href="#生成ssh-key" class="headerlink" title="生成ssh key"></a>生成ssh key</h2><p>1、终端输入命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;邮箱&quot;</div></pre></td></tr></table></figure>
+<p>2、下面信息是询问是否修改文件名和路径，一般都是用默认的，直接回车跳到下一步。</p>
+<p><img src="http://7xwa19.com1.z0.glb.clouddn.com/ssh1.png" alt="1"></p>
+<p>3、下面是询问是否添加密码，一般都是用默认，直接回车。</p>
+<p><img src="http://7xwa19.com1.z0.glb.clouddn.com/ssh3.png" alt="2"></p>
+<p>4、再次输入密码。如果没有就直接回车。</p>
+<p><img src="http://7xwa19.com1.z0.glb.clouddn.com/ssh2.png" alt="3"></p>
+<p>5、最终显示类似一下信息</p>
+<p><img src="http://7xwa19.com1.z0.glb.clouddn.com/ssh4.png" alt="4"></p>
+<p>以上这样就生成一个ssh key了。。</p>
+<h2 id="查看ssh-key-信息"><a href="#查看ssh-key-信息" class="headerlink" title="查看ssh key 信息"></a>查看ssh key 信息</h2><p>终端输入命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cat ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure>
+<p>如果<a href="http://git.oschina.net/" target="_blank" rel="external">oschina</a>或者<a href="https://github.com" target="_blank" rel="external">GitHub</a>上需要添加SSH，其中的ssh Value值就是命令返回的信息，具体会显示类似于下面的信息。</p>
+<p><img src="http://7xwa19.com1.z0.glb.clouddn.com/ssh5.png" alt="5"></p>
+<h2 id="多个ssh-key使用"><a href="#多个ssh-key使用" class="headerlink" title="多个ssh key使用"></a>多个ssh key使用</h2><p>有时会出现这样的情况，oschina和GitHub分别用不同的ssh key，面对这种情况要如何才能做到呢？下面我们就把这问题给解决了。</p>
+<p>1、按照上面的步骤生成第一个ssh key。如果已经生成，跳到下一步。</p>
+<p>2、按照“生成ssh key”的步骤，到第二步时，这里不再是回车，而是填入具体的路径，这里可以输入以下内容并执行（只要路径相同，名称跟第一个不一致就可以）。后面步骤不变。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ /Users/&lt;用户名&gt;/.ssh/second_id_rsa</div></pre></td></tr></table></figure>
+<p>3、在终端输入命令，意思是在.ssh文件夹下创建config文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd ~/.ssh/</div><div class="line">$ touch config</div></pre></td></tr></table></figure>
+<p>4、打开config，复制以下信息填入config文件。其中注意HostName和IdentityFile，分别是填入对应的信息。这里第一个是GitHub的配置，第二个是oschina的配置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#github配置</div><div class="line">Host github.com</div><div class="line">    HostName github.com</div><div class="line">    IdentityFile ~/.ssh/id_rsa</div><div class="line">    User git</div><div class="line">#gitoschina的配置</div><div class="line">Host git.oschina.net</div><div class="line">    HostName git.oschina.net</div><div class="line">    IdentityFile ~/.ssh/second_id_rsa</div><div class="line">    User git</div></pre></td></tr></table></figure>
+<p>5、测试GitHub，如果正常会返回成功的信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div></pre></td></tr></table></figure>
+<p>6、测试oschina，如果正常会返回成功的信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@git.oschina.net</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;生成ssh-key&quot;&gt;&lt;a href=&quot;#生成ssh-key&quot; class=&quot;headerlink&quot; title=&quot;生成ssh key&quot;&gt;&lt;/a&gt;生成ssh key&lt;/h2&gt;&lt;p&gt;1、终端输入命令。&lt;/p&gt;
+&lt;figure class=&quot;highlight pla
+    
+    </summary>
+    
+      <category term="SSH" scheme="http://yoursite.com/categories/SSH/"/>
+    
+    
+      <category term="ssh" scheme="http://yoursite.com/tags/ssh/"/>
+    
+  </entry>
+  
+</feed>
