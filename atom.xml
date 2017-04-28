@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-18T17:37:46.000Z</updated>
+  <updated>2017-04-28T03:03:53.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>IOS 适配器模式</title>
+    <link href="http://yoursite.com/2017/04/28/IOS-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/04/28/IOS-适配器模式/</id>
+    <published>2017-04-28T03:02:52.000Z</published>
+    <updated>2017-04-28T03:03:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、适配器模式简介"><a href="#一、适配器模式简介" class="headerlink" title="一、适配器模式简介"></a>一、适配器模式简介</h2><p>将一个类的接口转换成客户端希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</p>
+<h2 id="二、何时使用适配器模式"><a href="#二、何时使用适配器模式" class="headerlink" title="二、何时使用适配器模式"></a>二、何时使用适配器模式</h2><ul>
+<li>已有类的接口与需求不匹配</li>
+<li>想要一个可复用的类，该类能够同可能带有不兼容接口的其他类协作。</li>
+<li>需要适配一个类的几个不同子类，可是让每一个子类去子类化一个类适配器又不现实。</li>
+</ul>
+<h2 id="三、适配器的实现方式"><a href="#三、适配器的实现方式" class="headerlink" title="三、适配器的实现方式"></a>三、适配器的实现方式</h2><p>适配器的实现方式一共有2种：</p>
+<p><code>类适配器</code>：通过继承来适配接口）。</p>
+<p><code>对象适配器</code>：通过引用来适配接口。</p>
+<h2 id="四、类适配器与对象适配器的区别"><a href="#四、类适配器与对象适配器的区别" class="headerlink" title="四、类适配器与对象适配器的区别"></a>四、类适配器与对象适配器的区别</h2><ul>
+<li>适配类个数不一样：<code>类适配器</code>是针对一个类适配，<code>对象适配器</code>是针对多个类及其子类适配。</li>
+<li>重载适配类：<code>类适配器</code>易于重载（因为继承），<code>对象适配器</code>没法重载适配类行为（因为引用）。</li>
+<li>额外的指针开销：<code>类适配器</code>没有额外的开销，<code>对象适配器</code>需要额外的指针开销来访问适配类的行为。</li>
+</ul>
+<h2 id="五、具体实现"><a href="#五、具体实现" class="headerlink" title="五、具体实现"></a>五、具体实现</h2><p>Adaptee类，这里的作为被适配类，其中需要被适配的接口<code>specificRequest</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (void)specificRequest &#123;</div><div class="line">NSLog(@&quot;%s&quot;,__FUNCTION__);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>&lt;Target&gt;</code>协议，作为客户端所希望的接口抽象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@protocol Target &lt;NSObject&gt;</div><div class="line"></div><div class="line">- (void)request;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>类适配器ClassAdapter继承Adaptee类并重载<code>&lt;Target&gt;</code>协议的request方法。并在request方法中实现Adaptee的specificRequest方法。由于是继承关系，这种方式的优点（可以重写Adaptee的specificRequest方法）和缺点（只能针对一个被适配类）就更加突出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//  ClassAdapter.h</div><div class="line">@interface ClassAdapter : Adaptee &lt;Target&gt; </div><div class="line">@end</div><div class="line"></div><div class="line">//  ClassAdapter.m</div><div class="line">@implementation ClassAdapter</div><div class="line"></div><div class="line">- (void)request &#123;</div><div class="line">NSLog(@&quot;%s&quot;,__FUNCTION__);</div><div class="line">[self specificRequest];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)specificRequest &#123;</div><div class="line">NSLog(@&quot;%s&quot;,__FUNCTION__);</div><div class="line">[super specificRequest];</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>而对象适配器ObjectAdapter仅仅重载<code>&lt;Target&gt;</code>协议的request方法。在如何实现Adaptee的specificRequest方法的方式上，跟类适配器的方式完全不同，对象适配器是同过引用方式来实现的，这种方式跟对象适配器方式需要额外的指针开销。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">//  ObjectAdapter.m</div><div class="line">@interface ObjectAdapter ()</div><div class="line">@property (nonatomic, strong) Adaptee *adaptee;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ObjectAdapter</div><div class="line"></div><div class="line">- (instancetype)init &#123;</div><div class="line">self = [super init];</div><div class="line">if (self) &#123;</div><div class="line">_adaptee = [[Adaptee alloc] init];</div><div class="line">&#125;</div><div class="line">return self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)request &#123;</div><div class="line">NSLog(@&quot;%s&quot;,__FUNCTION__);</div><div class="line">[_adaptee specificRequest];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>区分是哪种适配器模式，只要看适配器类的实现方式就可以区分（继承：类适配器模式，引用：对象适配器模式）。在选择到底使用哪种适配器模式时，可以根据继承和引用的特性来决定当下哪种更加适合使用。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、适配器模式简介&quot;&gt;&lt;a href=&quot;#一、适配器模式简介&quot; class=&quot;headerlink&quot; title=&quot;一、适配器模式简介&quot;&gt;&lt;/a&gt;一、适配器模式简介&lt;/h2&gt;&lt;p&gt;将一个类的接口转换成客户端希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能
+    
+    </summary>
+    
+      <category term="IOS设计模式" scheme="http://yoursite.com/categories/IOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Hexo 添加Disqus评论功能</title>
